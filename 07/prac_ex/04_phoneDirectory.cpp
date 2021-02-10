@@ -13,39 +13,53 @@ Description:    -> Find phone number corresponding to
 */
 
 #include <iostream>
+#include <cstring>
+
+// Function to look up string
+std::string lookupName(std::string name, std::string names[], 
+                        std::string numbers[], int size);
 
 int main()
 {
-    using namespace std;
-    string names[] = {"Michael Myers",
+    std::string names[] = {"Michael Myers",
                     "Ash Williams",
                     "Jack Torrance",
                     "Freddy Krueger"};
-    string phoneNumbers[] = {"333-8000","333-2323",
+    std::string phoneNumbers[] = {"333-8000","333-2323",
                             "333-6150","339-7970"};
     
-    string targetName, targetPhone;
+    std::string targetName, targetPhone;
     char c;
     do
     {
-        cout << "Enter a name to find the "
+        std::cout << "Enter a name to find the "
             << "corresponding phone number."
-            << endl;
-        getline(cin, targetName);
+            << std::endl;
+        std::getline(std::cin, targetName);
         targetPhone = lookupName(targetName,
         names, phoneNumbers,4);
         
         if (targetPhone.length() > 0)
-            cout << "The number is: " << targetPhone << endl;
+            std::cout << "The number is: " << targetPhone << std::endl;
         else
-            cout << "Name not found. " << endl;
+            std::cout << "Name not found. " << std::endl;
         
-        cout << "Look up another name? (y/n)"
-            << endl;
-        cin >> c;
-        cin.ignore();
+        std::cout << "Look up another name? (y/n)"
+            << std::endl;
+        std::cin >> c;
+        std::cin.ignore();
     } while (c == 'y');
     return 0;
 }
 
-int lookupName(char name[], string names[], )
+std::string lookupName(std::string name, std::string names[], std::string numbers[], int size)
+{
+    for (int i = 0; i < size; i++)
+    {
+        if (names[i] == name)
+        {
+            return numbers[i];
+        }
+    }
+    return " Not in directory";
+}
